@@ -5,6 +5,8 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  transform-origin: center 80%;
+  transform: translateY(-100px);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -30,9 +32,9 @@
 
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
+    transform: translateY(-100px) rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: translateY(-100px) rotate(360deg);
   }
 }

@@ -1,25 +1,69 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Membre from './components/Membre';
+import Button from './components/Button';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const league = {
+  membre1: {
+    nom: 'Batman',
+    age: 48
+  },
+  membre2: {
+    nom: 'Superman',
+    age: 46
+  },
+  membre3: {
+    nom: 'Wonder Woman',
+    age: 79
+  },
+  membre4: {
+    nom: 'Catwoman',
+    age: 35
+  },
+  membre5: {
+    nom: 'Djoko',
+    age: 38
+  }
+}
+
+class App extends React.Component
+{
+
+  state = {
+    league: league,
+    plus: 2
+  }
+
+  handleClick = (nb) => {
+    //modifier un state de type objet
+    //copie du state
+    const league = {...this.state.league}
+    league.membre1.age += nb
+    this.setState({league: league})
+  }
+
+  render(){
+    const list = Object.keys(this.state.league).map(iteration => {
+      return (
+        <Membre 
+          key= {iteration}
+          nom={this.state.league[iteration].nom}
+          age={this.state.league[iteration].age}
+        />
+      )
+    })
+
+    return(
+      <>
+        <h1>Test</h1>
+        {list}
+        <Button 
+          plus={this.state.plus}
+          vieillir={() => {this.handleClick(this.state.plus)}}
+        />
+      </>
+    )
+  }
 }
 
 export default App;
