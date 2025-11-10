@@ -31,7 +31,8 @@ class App extends React.Component
 
   state = {
     league: league,
-    plus: 2
+    plus: 2,
+    isShow: false,
   }
 
   handleClick = (nb) => {
@@ -40,6 +41,11 @@ class App extends React.Component
     const league = {...this.state.league}
     league.membre1.age += nb
     this.setState({league: league})
+  }
+
+  handeleShow = ()=>{
+    const showValue = this.state.isShow
+    this.setState({isShow: !showValue})
   }
 
   render(){
@@ -57,6 +63,23 @@ class App extends React.Component
       <>
         <h1>Test</h1>
         {list}
+
+        <Membre
+          nom="test"
+          age="45"
+        >
+        {
+          this.state.isShow ? (<strong>Je suis là</strong>) : null
+        }
+          <button
+            onClick={this.handeleShow}
+          >
+            {
+              this.state.isShow ? 'Cacher' : 'Montrer'
+            }
+          </button>
+        </Membre>
+
         <Button 
           plus={this.state.plus}
           vieillir={() => {this.handleClick(this.state.plus)}}
