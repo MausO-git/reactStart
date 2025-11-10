@@ -43,6 +43,20 @@ class App extends React.Component
     this.setState({league: league})
   }
 
+  handleChange = (event, id) => {
+    const league = {...this.state.league}
+    const nom = event.target.value
+    league[id].nom = nom
+    this.setState({league:league})
+  }
+
+  hideName = (id) => {
+    const league = {...this.state.league}
+    league[id].nom = 'X'
+    league[id].age = 0
+    this.setState({league})
+  }
+
   handeleShow = ()=>{
     const showValue = this.state.isShow
     this.setState({isShow: !showValue})
@@ -55,6 +69,9 @@ class App extends React.Component
           key= {iteration}
           nom={this.state.league[iteration].nom}
           age={this.state.league[iteration].age}
+          handleChange={(event) => this.handleChange(event, iteration)}
+          hideName={() => this.hideName(iteration)}
+          plus={2}
         />
       )
     })
@@ -66,7 +83,7 @@ class App extends React.Component
 
         <Membre
           nom="test"
-          age="45"
+          age="22"
         >
         {
           this.state.isShow ? (<strong>Je suis là</strong>) : null

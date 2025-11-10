@@ -1,4 +1,7 @@
-const Membre = ({nom, age, children}) => {
+import Affichage from "./Affichage";
+import Button from "./Button";
+
+const Membre = ({nom, age, children, handleChange, hideName, plus}) => {
     // const nom = props.nom
     // const age = props.age
 
@@ -6,7 +9,16 @@ const Membre = ({nom, age, children}) => {
 
     return ( 
         <>
-            <h2>Membre: {nom} - Age: {age} </h2>
+            <Affichage 
+                nom = {nom}
+                age = {age}
+            />
+            <input type="text" value={nom} onChange={handleChange} />
+            <button onClick={hideName}>X</button>
+            <Button
+                plus = {plus}
+            >
+            </Button>
             { children ? <p>{children}</p> : null } 
         </>
      );
