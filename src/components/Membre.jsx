@@ -1,7 +1,7 @@
 import Affichage from "./Affichage";
 import Button from "./Button";
 
-const Membre = ({nom, age, children, handleChange, hideName, plus}) => {
+const Membre = ({nom, age, children, handleChange, hideName, plus, vieillir}) => {
     // const nom = props.nom
     // const age = props.age
 
@@ -17,6 +17,7 @@ const Membre = ({nom, age, children, handleChange, hideName, plus}) => {
             <button onClick={hideName}>X</button>
             <Button
                 plus = {plus}
+                vieillir = {vieillir}
             >
             </Button>
             { children ? <p>{children}</p> : null } 

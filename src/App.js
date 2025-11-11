@@ -35,11 +35,11 @@ class App extends React.Component
     isShow: false,
   }
 
-  handleClick = (nb) => {
+  handleClick = (nb, id) => {
     //modifier un state de type objet
     //copie du state
     const league = {...this.state.league}
-    league.membre1.age += nb
+    league[id].age += nb
     this.setState({league: league})
   }
 
@@ -71,7 +71,8 @@ class App extends React.Component
           age={this.state.league[iteration].age}
           handleChange={(event) => this.handleChange(event, iteration)}
           hideName={() => this.hideName(iteration)}
-          plus={2}
+          plus={this.state.plus}
+          vieillir={() => this.handleClick(this.state.plus, iteration)}
         />
       )
     })
