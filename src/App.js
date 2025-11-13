@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Membre from './components/Membre';
-import Button from './components/Button';
+
 
 const league = {
   membre1: {
@@ -23,6 +23,10 @@ const league = {
   membre5: {
     nom: 'Djoko',
     age: 38
+  },
+  membre6: {
+    nom: 'Red',
+    age: 12
   }
 }
 
@@ -50,6 +54,13 @@ class App extends React.Component
     this.setState({league:league})
   }
 
+  handleAgeChange = (event, id) => {
+    const league = {...this.state.league}
+    const age = parseInt(event.target.value)
+    league[id].age = age
+    this.setState({league:league})
+  }
+
   hideName = (id) => {
     const league = {...this.state.league}
     league[id].nom = 'X'
@@ -70,6 +81,7 @@ class App extends React.Component
           nom={this.state.league[iteration].nom}
           age={this.state.league[iteration].age}
           handleChange={(event) => this.handleChange(event, iteration)}
+          handleAgeChange={(event) => this.handleAgeChange(event, iteration)}
           hideName={() => this.hideName(iteration)}
           plus={this.state.plus}
           vieillir={() => this.handleClick(this.state.plus, iteration)}
@@ -80,7 +92,9 @@ class App extends React.Component
     return(
       <>
         <h1>Test</h1>
-        {list}
+        <div className="list">
+          {list}
+        </div>
 
         <Membre
           nom="test"
@@ -98,10 +112,6 @@ class App extends React.Component
           </button>
         </Membre>
 
-        <Button 
-          plus={this.state.plus}
-          vieillir={() => {this.handleClick(this.state.plus)}}
-        />
       </>
     )
   }

@@ -38,3 +38,12 @@
     transform: translateY(-100px) rotate(360deg);
   }
 }
+
+.list{
+  margin: 0 3%;
+}
+
+.round{
+  padding: 5px;
+  border-radius: 10px;
+}
